@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chowie-dev-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - chowie.dev
+      secretName: chowie-dev-tls
+  rules:
+    - host: chowie.dev
+      http:
+        paths:
+          - path: /api/hit
+            pathType: Exact
+            backend:
+              service:
+                name: hit-counter-api-service
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: astro-frontend-service
+                port:
+                  number: 80

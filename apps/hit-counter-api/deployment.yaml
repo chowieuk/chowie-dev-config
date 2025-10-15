@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hit-counter-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hit-counter-api
+  template:
+    metadata:
+      labels:
+        app: hit-counter-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/chowieuk/hit-counter-api:latest # Placeholder
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: hit-counter-data
