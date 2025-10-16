@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: site
-          image: sha256:7db843d4d3fccdfc093cf03de43622d9f606e61cba6ee3e64ad892e6d325a60c
+          image: sha256:3965ce5719d908fc105d69dbc43045519907212c89641800defd5ba98a42dd52
           ports:
             - containerPort: 80
