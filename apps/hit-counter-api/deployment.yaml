@@ -12,6 +12,8 @@ spec:
       labels:
         app: hit-counter-api
     spec:
+      imagePullSecrets:
+        - name: ghcr-creds
       containers:
         - name: api
           image: ghcr.io/chowieuk/hit-counter-api:latest # Placeholder

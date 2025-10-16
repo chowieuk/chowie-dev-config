@@ -12,6 +12,8 @@ spec:
       labels:
         app: astro-frontend
     spec:
+      imagePullSecrets:
+        - name: ghcr-creds
       containers:
         - name: site
           image: sha256:3965ce5719d908fc105d69dbc43045519907212c89641800defd5ba98a42dd52
