@@ -19,10 +19,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - maze.chowie.uk
+        - maze.chowie.dev
       secretName: maze-chowie-uk-tls
   rules:
-    - host: maze.chowie.uk
+    - host: maze.chowie.dev
       http:
         paths:
           - path: /api
