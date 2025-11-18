@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maze-racer-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maze-racer-backend
+  template:
+    metadata:
+      labels:
+        app: maze-racer-backend
+    spec:
+      imagePullSecrets:
+        - name: ghcr-creds
+      containers:
+        - name: backend
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http-backend
+            initialDelaySeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http-backend
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          image: ghcr.io/chowieuk/maze-racer-backend:latest # Placeholder
+          env:
+            - name: PORT
+              value: "8080"
+          ports:
+            - name: http-backend
+              containerPort: 8080
