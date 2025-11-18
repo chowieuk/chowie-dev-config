@@ -32,7 +32,7 @@ spec:
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
-          image: ghcr.io/chowieuk/maze-racer-backend:latest # Placeholder
+          image: ghcr.io/chowieuk/chowie-dev@sha256:b91c7be4722ebf59729525d7c035c4f253057f7cb80fc20a387455063d5e54a4
           env:
             - name: PORT
               value: "8080"
