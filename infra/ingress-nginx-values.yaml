@@ -1,0 +1,8 @@
+controller:
+  hostPort:
+    enabled: false
+  service:
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+  publishService:
+    enabled: true
