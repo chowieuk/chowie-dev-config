@@ -16,7 +16,7 @@ spec:
         - name: ghcr-creds
       containers:
         - name: web
-          image: ghcr.io/chowieuk/maze-racer-frontend@sha256:62ea369f9f9dd7fd1ed682b8470b1d3107e6a3bcdb44d8808e76d99dfeeab64b
+          image: ghcr.io/chowieuk/maze-racer-frontend@sha256:cd48512a57625aa0779f67d7d9ef274e6ac2888c491a3c1d9aac17c1bfff1240
           ports:
             - containerPort: 80
           livenessProbe:
