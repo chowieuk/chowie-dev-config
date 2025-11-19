@@ -16,6 +16,6 @@ spec:
         - name: ghcr-creds
       containers:
         - name: site
-          image: ghcr.io/chowieuk/chowie-dev@sha256:73fbc48895e363e1a90ed428d4d0e44a2173bef68c3195da6260359a6124587a
+          image: ghcr.io/chowieuk/chowie-dev@sha256:22dc0d5ede7afab035d8a9bb96e684ba7a4ccbc438d0273250a7b90a62c3071c
           ports:
             - containerPort: 80
