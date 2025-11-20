@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: blog
+
+resources:
+  - ../../base
+
+commonLabels:
+  environment: prod
+
+images:
+  - name: ghcr.io/chowieuk/chowie-dev
+    digest: sha256:22dc0d5ede7afab035d8a9bb96e684ba7a4ccbc438d0273250a7b90a62c3071c
+  - name: ghcr.io/chowieuk/hit-counter-api
+    newTag: latest # This'll be updated in the next release.

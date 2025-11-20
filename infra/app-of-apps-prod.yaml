@@ -1,19 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cluster-root
+  name: apps-prod
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/chowieuk/chowie-dev-config.git
     targetRevision: HEAD
-    path: apps
-    directory:
-      recurse: true
+    path: infra/apps-prod
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
