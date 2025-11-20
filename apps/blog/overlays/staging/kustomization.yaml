@@ -4,28 +4,29 @@ kind: Kustomization
 namespace: blog-staging
 
 resources:
-  - ../../base
+- ../../base
 
 commonLabels:
   environment: staging
 
 patches:
-  - target:
-      kind: Ingress
-      name: blog-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: staging.chowie.dev
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: staging.chowie.dev
-      - op: replace
-        path: /spec/tls/0/secretName
-        value: blog-staging-tls
+- patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: staging.chowie.dev
+    - op: replace
+      path: /spec/tls/0/hosts/0
+      value: staging.chowie.dev
+    - op: replace
+      path: /spec/tls/0/secretName
+      value: blog-staging-tls
+  target:
+    kind: Ingress
+    name: blog-ingress
 
 images:
-  - name: ghcr.io/chowieuk/chowie-dev
-    digest: sha256:22dc0d5ede7afab035d8a9bb96e684ba7a4ccbc438d0273250a7b90a62c3071c
-  - name: ghcr.io/chowieuk/hit-counter-api
-    newTag: latest # This'll be updated in the next release.
+- digest: sha256:b9382d64f58d051a9f3019cd5f0cd4240a6de2aac7f5cd3e2248c894cf226802
+  name: ghcr.io/chowieuk/chowie-dev
+  newName: ghcr.io/chowieuk/chowie-dev
+- name: ghcr.io/chowieuk/hit-counter-api
+  newTag: latest
