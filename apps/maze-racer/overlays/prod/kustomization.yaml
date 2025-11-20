@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: maze-racer
+
+resources:
+  - ../../base
+
+commonLabels:
+  environment: prod
+
+replicas:
+  - name: maze-racer-backend
+    count: 2
+  - name: maze-racer-frontend
+    count: 2
+
+images:
+  - name: ghcr.io/chowieuk/maze-racer-backend
+    digest: sha256:eb7e31ba664e68f4919cdbfd1dab9d49ca09b1342436a494586c00d0742fd93c
+  - name: ghcr.io/chowieuk/maze-racer-frontend
+    digest: sha256:cd48512a57625aa0779f67d7d9ef274e6ac2888c491a3c1d9aac17c1bfff1240
