@@ -23,9 +23,6 @@ patches:
       - op: replace
         path: /spec/tls/0/secretName
         value: blog-staging-tls
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
 
 images:
   - name: ghcr.io/chowieuk/chowie-dev

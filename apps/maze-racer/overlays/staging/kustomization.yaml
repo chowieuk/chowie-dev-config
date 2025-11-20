@@ -23,9 +23,6 @@ patches:
       - op: replace
         path: /spec/tls/0/secretName
         value: maze-staging-tls
-      - op: replace
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-staging
 
 images:
   - name: ghcr.io/chowieuk/maze-racer-backend
