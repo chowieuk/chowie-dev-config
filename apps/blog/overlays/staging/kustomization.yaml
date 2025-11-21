@@ -25,7 +25,7 @@ patches:
     name: blog-ingress
 
 images:
-- digest: sha256:b9382d64f58d051a9f3019cd5f0cd4240a6de2aac7f5cd3e2248c894cf226802
+- digest: sha256:2db33a9e1857f8355616e1a693ae8a3383087df6e4dbf7e6a35c6f7e34ff194a
   name: ghcr.io/chowieuk/chowie-dev
   newName: ghcr.io/chowieuk/chowie-dev
 - name: ghcr.io/chowieuk/hit-counter-api
