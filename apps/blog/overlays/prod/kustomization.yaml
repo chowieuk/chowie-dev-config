@@ -10,7 +10,7 @@ commonLabels:
   environment: prod
 
 images:
-- digest: sha256:dd579fb7b07bc18de10ecf97a2433e5c0fadf14714dd3d79c7003c1dd0b54793
+- digest: sha256:e70eb4cb27ae8d9eab1c2f7c5161a82ad4577b157f66a9cef718880ed899482e
   name: ghcr.io/chowieuk/chowie-dev
 - name: ghcr.io/chowieuk/hit-counter-api
   newTag: latest
