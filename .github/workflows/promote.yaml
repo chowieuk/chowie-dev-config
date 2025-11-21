@@ -1,0 +1,60 @@
+name: Promote Staging to Prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        description: "Which App to Promote?"
+        required: true
+        default: "blog"
+        type: choice
+        options:
+          - blog
+          - maze-racer
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Config Repo
+        uses: actions/checkout@v4
+
+      - name: Install Kustomize
+        run: |
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+          sudo mv kustomize /usr/local/bin/
+
+      - name: Promote Images
+        run: |
+          APP="${{ inputs.app_name }}"
+          STAGING_PATH="apps/$APP/overlays/staging"
+          PROD_PATH="apps/$APP/overlays/prod"
+
+          echo "Promoting $APP from Staging to Prod..."
+
+          # Uses pre-installed yq to get name=value pairs
+          # Handles .digest (preferred) or falls back to .newTag
+          IMAGES=$(yq -r '.images[] | .name + "=" + (.digest // .newTag)' $STAGING_PATH/kustomization.yaml)
+
+          cd $PROD_PATH
+
+          for IMG in $IMAGES; do
+            echo "Updating $IMG"
+            kustomize edit set image $IMG
+          done
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          title: "chore(prod): promote ${{ inputs.app_name }} to latest staging"
+          body: |
+            Promoting all images for **${{ inputs.app_name }}** from Staging to Production.
+
+            This PR was created automatically by the Promotion Workflow.
+          branch: "promotion/${{ inputs.app_name }}-prod"
+          base: "main"
+          delete-branch: true
