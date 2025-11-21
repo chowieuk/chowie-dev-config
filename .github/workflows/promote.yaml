@@ -36,9 +36,7 @@ jobs:
 
           echo "Promoting $APP from Staging to Prod..."
 
-          # Uses pre-installed yq to get name=value pairs
-          # Handles .digest (preferred) or falls back to .newTag
-          IMAGES=$(yq -r '.images[] | .name + "=" + (.digest // .newTag)' $STAGING_PATH/kustomization.yaml)
+          IMAGES=$(yq -r '.images[] | select(.digest) | .name + "@" + .digest' $STAGING_PATH/kustomization.yaml)
 
           cd $PROD_PATH
 
