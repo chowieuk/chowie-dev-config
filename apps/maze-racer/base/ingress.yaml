@@ -20,7 +20,7 @@ spec:
   tls:
     - hosts:
         - maze.chowie.dev
-      secretName: maze-chowie-uk-tls
+      secretName: maze-chowie-dev-tls
   rules:
     - host: maze.chowie.dev
       http:

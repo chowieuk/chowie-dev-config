@@ -9,7 +9,7 @@ spec:
   tls:
     - hosts:
         - tessa.chowie.dev
-      secretName: chowie-dev-tls
+      secretName: tessa-chowie-dev-tls
   rules:
     - host: tessa.chowie.dev
       http:
@@ -18,6 +18,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: astro-frontend-service
+                name: tessa-frontend-service
                 port:
                   number: 80
