@@ -4,13 +4,13 @@ kind: Kustomization
 namespace: blog
 
 resources:
-  - ../../base
+- ../../base
 
 commonLabels:
   environment: prod
 
 images:
-  - name: ghcr.io/chowieuk/chowie-dev
-    digest: sha256:22dc0d5ede7afab035d8a9bb96e684ba7a4ccbc438d0273250a7b90a62c3071c
-  - name: ghcr.io/chowieuk/hit-counter-api
-    newTag: latest # This'll be updated in the next release.
+- digest: sha256:dd579fb7b07bc18de10ecf97a2433e5c0fadf14714dd3d79c7003c1dd0b54793
+  name: ghcr.io/chowieuk/chowie-dev
+- name: ghcr.io/chowieuk/hit-counter-api
+  newTag: latest
