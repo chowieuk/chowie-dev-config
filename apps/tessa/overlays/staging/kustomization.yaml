@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: tessa-staging
+
+resources:
+  - ../../base
+
+commonLabels:
+  environment: staging
+
+patches:
+  - target:
+      kind: Ingress
+      name: tessa-ingress
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: tessa.staging.chowie.dev
+      - op: replace
+        path: /spec/tls/0/hosts/0
+        value: tessa.staging.chowie.dev
+      - op: replace
+        path: /spec/tls/0/secretName
+        value: tessa-staging-tls
+
+images:
+  - name: ghcr.io/chowieuk/tessa-frontend
+    digest: sha256:04eb6665a1a319a8db51bf1af69824112ea8c4b06b5fff6add5ac3fa1b03d2fe

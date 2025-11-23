@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tessa-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tessa-frontend
+  template:
+    metadata:
+      labels:
+        app: tessa-frontend
+    spec:
+      imagePullSecrets:
+        - name: ghcr-creds
+      containers:
+        - name: web
+          image: ghcr.io/chowieuk/tessa@sha256:cd48512a57625aa0779f67d7d9ef274e6ac2888c491a3c1d9aac17c1bfff1240
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 5

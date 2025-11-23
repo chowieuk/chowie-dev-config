@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tessa-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - tessa.chowie.dev
+      secretName: chowie-dev-tls
+  rules:
+    - host: tessa.chowie.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: astro-frontend-service
+                port:
+                  number: 80
