@@ -4,26 +4,27 @@ kind: Kustomization
 namespace: tessa-staging
 
 resources:
-  - ../../base
+- ../../base
 
 commonLabels:
   environment: staging
 
 patches:
-  - target:
-      kind: Ingress
-      name: tessa-ingress
-    patch: |-
-      - op: replace
-        path: /spec/rules/0/host
-        value: tessa.staging.chowie.dev
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: tessa.staging.chowie.dev
-      - op: replace
-        path: /spec/tls/0/secretName
-        value: tessa-staging-tls
+- patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: tessa.staging.chowie.dev
+    - op: replace
+      path: /spec/tls/0/hosts/0
+      value: tessa.staging.chowie.dev
+    - op: replace
+      path: /spec/tls/0/secretName
+      value: tessa-staging-tls
+  target:
+    kind: Ingress
+    name: tessa-ingress
 
 images:
-  - name: ghcr.io/chowieuk/tessa-frontend
-    digest: sha256:ef8fdc62d2549803c2c95b705e36b8c0a44a20576d0ddc480229b606cf99fb48
+- digest: sha256:2b351952ee93aeeb4d1b4b7c44ed0f1a6972d8e19ddfbd0df67b102780f3e84b
+  name: ghcr.io/chowieuk/tessa-frontend
+  newName: ghcr.io/chowieuk/tessa-frontend
