@@ -16,7 +16,7 @@ spec:
         - name: ghcr-creds
       containers:
         - name: web
-          image: ghcr.io/chowieuk/tessa-frontend@sha256:cd48512a57625aa0779f67d7d9ef274e6ac2888c491a3c1d9aac17c1bfff1240
+          image: ghcr.io/chowieuk/tessa-frontend@sha256:ef8fdc62d2549803c2c95b705e36b8c0a44a20576d0ddc480229b606cf99fb48
           ports:
             - containerPort: 80
           livenessProbe:
