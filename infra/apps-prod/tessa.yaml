@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tessa-prod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/chowieuk/chowie-dev-config.git
+    targetRevision: HEAD
+    path: apps/tessa/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tessa
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
