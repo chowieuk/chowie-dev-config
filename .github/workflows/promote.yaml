@@ -11,6 +11,7 @@ on:
         options:
           - blog
           - maze-racer
+          - tessa
 
 jobs:
   promote:
