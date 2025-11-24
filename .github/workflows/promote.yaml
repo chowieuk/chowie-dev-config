@@ -1,4 +1,5 @@
 name: Promote Staging to Prod
+run-name: Promote ${{ inputs.app_name }} Staging to Prod 
 
 on:
   workflow_dispatch:
