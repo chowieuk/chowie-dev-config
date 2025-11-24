@@ -4,15 +4,15 @@ kind: Kustomization
 namespace: tessa
 
 resources:
-  - ../../base
+- ../../base
 
 commonLabels:
   environment: prod
 
 replicas:
-  - name: tessa-frontend
-    count: 1
+- count: 1
+  name: tessa-frontend
 
 images:
-  - name: ghcr.io/chowieuk/tessa-frontend
-    digest: sha256:ef8fdc62d2549803c2c95b705e36b8c0a44a20576d0ddc480229b606cf99fb48
+- digest: sha256:b022296b0d9645da6592276b0ff54b253eb2940000ff0212629e513b17322fe6
+  name: ghcr.io/chowieuk/tessa-frontend
