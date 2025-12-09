@@ -25,6 +25,6 @@ patches:
     name: tessa-ingress
 
 images:
-- digest: sha256:00d2bc4c91dd962ee0b5ecf6786e03ad076a3e65e31bf004bc68ee2fa8f54cd6
+- digest: sha256:c104d0146251c309f1c02c31289fb46fd5d8124fc2a0ce6131fbb800f5cde292
   name: ghcr.io/chowieuk/tessa-frontend
   newName: ghcr.io/chowieuk/tessa-frontend
